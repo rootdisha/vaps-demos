@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+demo1/heroanimation.html
+demo1/index1.html
+.gitignore
