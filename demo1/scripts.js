@@ -28,6 +28,9 @@ class ScrollAnimations {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('revealed');
+                } else {
+                    // Remove revealed class when element leaves viewport
+                    entry.target.classList.remove('revealed');
                 }
             });
         }, {
@@ -35,9 +38,16 @@ class ScrollAnimations {
             rootMargin: CONFIG.SCROLL_ROOT_MARGIN
         });
 
+        // Observe all scroll-reveal elements
         document.querySelectorAll('.scroll-reveal').forEach(el => {
             observer.observe(el);
         });
+
+        // Specifically observe the hero section
+        const heroSection = document.querySelector('.hero');
+        if (heroSection) {
+            observer.observe(heroSection);
+        }
     }
 }
 
