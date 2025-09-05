@@ -24,4 +24,5 @@ dist-ssr
 *.sw?
 demo1/heroanimation.html
 demo1/index1.html
-.gitignore
+demo1/notes.md
+*.zip
