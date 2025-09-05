@@ -65,7 +65,7 @@
             align-items: center;
             justify-content: center;
             perspective: 1000px;
-            background-color: var(--navy-blue);
+            background-color: var(--red);
         }
 
         .ribbon-slider {
@@ -139,17 +139,22 @@
             color: var(--navy-blue);
             margin-bottom: 2rem;
             line-height: 1.2;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: titleSlideIn 0.8s ease 0.3s forwards;
         }
 
         .ribbon-blurb {
             font-size: 1.1rem;
             line-height: 1.6;
             color: var(--navy-blue);
-            opacity: 0.8;
+            opacity: 0;
             margin-bottom: 2.5rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            transform: translateY(20px);
+            animation: blurbFadeIn 0.8s ease 0.6s forwards;
         }
 
         .ribbon-ctas {
@@ -157,6 +162,52 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: ctaSlideUp 0.8s ease 0.9s forwards;
+        }
+
+        /* Animation keyframes */
+        @keyframes titleSlideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes blurbFadeIn {
+            to {
+                opacity: 0.8;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes ctaSlideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Reset animations when slide changes */
+        .ribbon-item:not(.active) .ribbon-title,
+        .ribbon-item:not(.active) .ribbon-blurb,
+        .ribbon-item:not(.active) .ribbon-ctas {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: none;
+        }
+
+        .ribbon-item.active .ribbon-title {
+            animation: titleSlideIn 0.8s ease 0.3s forwards;
+        }
+
+        .ribbon-item.active .ribbon-blurb {
+            animation: blurbFadeIn 0.8s ease 0.6s forwards;
+        }
+
+        .ribbon-item.active .ribbon-ctas {
+            animation: ctaSlideUp 0.8s ease 0.9s forwards;
         }
 
         .cta-primary {
@@ -250,8 +301,8 @@
             100% { width: 100%; }
         }
 
-               /* Responsive Design */
-               @media (max-width: 768px) {
+        /* Responsive Design */
+        @media (max-width: 768px) {
             .ribbon-item {
                 width: 95vw;
                 height: auto;
