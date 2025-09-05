@@ -8,24 +8,31 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* ========================================
+           CSS CUSTOM PROPERTIES (VARIABLES)
+        ======================================== */
         :root {
+            /* Color Palette */
             --sand-dollar: #E5DDC8;
             --teal: #01949A;
             --navy-blue: #004369;
             --red: #DB1F48;
-            /* palette 1 */
-            /* --navy-blue: #003366; */
             --aquamarine: #71B1C5;
             --baby-blue: #CBE6EF;
             --white: #F0F2F3;
-            /* palette 2 */
             --fun-blue: #144394;
-            /* --monza: #E00918; */
             --oyster-pink: #EBCFCF;
-            /* --apricot: #E7887B; */
             --grey-blue: #D6D9DC;
+            
+            /* Animation Timing */
+            --transition-fast: 0.3s ease;
+            --transition-normal: 0.8s ease;
+            --transition-bounce: 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
+        /* ========================================
+           RESET & BASE STYLES
+        ======================================== */
         * {
             margin: 0;
             padding: 0;
@@ -40,25 +47,242 @@
             line-height: 1.6;
         }
 
-        /* Header */
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            /* background: rgba(240, 242, 243, 0.95); */
-            background-color: var(--sand-dollar);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 51, 102, 0.1);
-            z-index: 1000;
-            transition: all 0.3s ease;
-            transform: translateY(-100%);
-            animation: slideDown 1s ease 0.5s forwards;
+        /* ========================================
+           UTILITY CLASSES
+        ======================================== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
+        .section {
+            padding: 8rem 2rem 5rem;
+            scroll-margin-top: 80px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 2.5rem;
+            color: var(--navy-blue);
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition-normal);
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease 0.2s;
+        }
+
+        /* ========================================
+           ANIMATION KEYFRAMES
+        ======================================== */
         @keyframes slideDown {
             to { transform: translateY(0); }
         }
 
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes titleSlideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes blurbFadeIn {
+            to {
+                opacity: 0.8;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes ctaSlideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes progressFill {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes growWidth {
+            to { width: 100%; }
+        }
+
+        @keyframes statItemPop {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes cardSlideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.8);
+            }
+            60% {
+                opacity: 1;
+                transform: translateY(-10px) scale(1.05);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes logoSlide {
+            to {
+                opacity: 0.7;
+                transform: translateY(0) rotateY(0deg);
+            }
+        }
+
+        @keyframes heroTitleReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heroParagraphReveal {
+            to {
+                opacity: 0.8;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ========================================
+           HEADER & NAVIGATION
+        ======================================== */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--sand-dollar);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 51, 102, 0.1);
+            z-index: 1000;
+            transition: var(--transition-fast);
+            transform: translateY(-100%);
+            animation: slideDown 1s ease 0.5s forwards;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-family: 'Exo 2', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--navy-blue);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--navy-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition-fast);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--teal);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--teal);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--red);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-fast);
+        }
+
+        .nav-cta:hover {
+            background: var(--navy-blue);
+            transform: translateY(-2px);
+        }
+
+        /* ========================================
+           RIBBON HERO SLIDER
+        ======================================== */
         .ribbon-container {
             position: relative;
             height: 100vh;
@@ -66,7 +290,6 @@
             align-items: center;
             justify-content: center;
             perspective: 1000px;
-            /* background-color: var(--red); */
             background: linear-gradient(135deg, var(--navy-blue), var(--red));
         }
 
@@ -87,7 +310,6 @@
             background: var(--white);
             border-radius: 25px;
             padding: 3rem;
-            /* box-shadow: 0 25px 50px rgba(0, 51, 102, 0.2); */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -116,24 +338,7 @@
             z-index: 5;
         }
 
-        .ribbon-number {
-            position: absolute;
-            top: -15px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--aquamarine), var(--navy-blue));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Exo 2', sans-serif;
-            font-weight: 700;
-            color: var(--white);
-            font-size: 1.2rem;
-            box-shadow: 0 5px 15px rgba(0, 51, 102, 0.3);
-        }
-
+        /* Ribbon Content Styles */
         .ribbon-title {
             font-family: 'Exo 2', sans-serif;
             font-size: clamp(1.8rem, 4vw, 2.5rem);
@@ -169,28 +374,6 @@
             animation: ctaSlideUp 0.8s ease 0.9s forwards;
         }
 
-        /* Animation keyframes */
-        @keyframes titleSlideIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes blurbFadeIn {
-            to {
-                opacity: 0.8;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes ctaSlideUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         /* Reset animations when slide changes */
         .ribbon-item:not(.active) .ribbon-title,
         .ribbon-item:not(.active) .ribbon-blurb,
@@ -212,6 +395,7 @@
             animation: ctaSlideUp 0.8s ease 0.9s forwards;
         }
 
+        /* CTA Button Styles */
         .cta-primary {
             background: var(--aquamarine);
             color: var(--white);
@@ -220,7 +404,7 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 1rem;
-            transition: all 0.3s ease;
+            transition: var(--transition-fast);
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
@@ -242,7 +426,7 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 1rem;
-            transition: all 0.3s ease;
+            transition: var(--transition-fast);
         }
 
         .cta-secondary:hover {
@@ -268,7 +452,7 @@
             border-radius: 50%;
             background: rgba(0, 51, 102, 0.3);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition-fast);
         }
 
         .nav-dot.active {
@@ -276,7 +460,7 @@
             transform: scale(1.3);
         }
 
-        /* Auto-play indicator */
+        /* Progress Bar */
         .progress-bar {
             position: absolute;
             bottom: 10px;
@@ -298,137 +482,9 @@
             animation: progressFill 5s linear infinite;
         }
 
-        @keyframes progressFill {
-            0% { width: 0%; }
-            100% { width: 100%; }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .ribbon-item {
-                width: 95vw;
-                height: auto;
-                min-height: 450px;
-                padding: 2rem 1.5rem;
-            }
-
-            .ribbon-title {
-                font-size: 1.5rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .ribbon-blurb {
-                font-size: 1rem;
-                margin-bottom: 2rem;
-            }
-
-            .ribbon-ctas {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .cta-primary,
-            .cta-secondary {
-                width: 80%;
-                justify-content: center;
-            }
-        }
-
-        /* Entrance animation */
-        .ribbon-item {
-            animation: slideInRibbon 1s ease-out forwards;
-        }
-
-        @keyframes slideInRibbon {
-            0% {
-                transform: translateY(-100px) rotateX(-90deg);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0) rotateX(0deg);
-                opacity: 1;
-            }
-        }
-
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            /* background-color: var(--sand-dollar); */
-        }
-
-        .logo {
-            font-family: 'Exo 2', sans-serif;
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--navy-blue);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--navy-blue);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--teal);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--teal);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-cta {
-            background: var(--red);
-            color: var(--white);
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .nav-cta:hover {
-            background: var(--navy-blue);
-            transform: translateY(-2px);
-        }
-
-        /* Section Spacing */
-        .section {
-            padding: 8rem 2rem 5rem;
-            scroll-margin-top: 80px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Hero Section */
+        /* ========================================
+           MAIN HERO SECTION
+        ======================================== */
         .hero {
             scroll-margin-top: 80px;
             min-height: 100vh;
@@ -454,13 +510,6 @@
             animation: slideInLeft 1s ease 1s forwards;
         }
 
-        @keyframes slideInLeft {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
         .hero-stats {
             display: flex;
             gap: 1rem;
@@ -469,14 +518,22 @@
             animation: fadeInUp 1s ease 1.5s forwards;
         }
 
-        .stat-item {
+        .hero-stats .stat-item {
             background: rgba(113, 177, 197, 0.15);
             padding: 0.5rem 1rem;
             border-radius: 20px;
             font-size: 0.9rem;
             font-weight: 600;
             color: var(--teal);
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+            animation: statItemPop 0.6s ease forwards;
         }
+
+        .hero-stats .stat-item:nth-child(1) { animation-delay: 1.5s; }
+        .hero-stats .stat-item:nth-child(2) { animation-delay: 1.7s; }
+        .hero-stats .stat-item:nth-child(3) { animation-delay: 1.9s; }
+        .hero-stats .stat-item:nth-child(4) { animation-delay: 2.1s; }
 
         .hero h1 {
             font-family: 'Exo 2', sans-serif;
@@ -485,13 +542,18 @@
             line-height: 1.1;
             margin-bottom: 1.5rem;
             color: var(--navy-blue);
+            opacity: 0;
+            transform: translateY(40px);
+            animation: heroTitleReveal 1.2s ease 1.2s forwards;
         }
 
         .hero p {
             font-size: 1rem;
             color: var(--navy-blue);
             margin-bottom: 2rem;
-            opacity: 0.8;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: heroParagraphReveal 1s ease 1.8s forwards;
         }
 
         .hero b {
@@ -512,7 +574,7 @@
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: var(--transition-fast);
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
@@ -532,7 +594,7 @@
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: var(--transition-fast);
         }
 
         .btn-secondary:hover {
@@ -540,7 +602,7 @@
             color: var(--white);
         }
 
-        /* Hero Visual */
+        /* Hero Visual Component */
         .hero-visual {
             position: relative;
             display: flex;
@@ -549,24 +611,6 @@
             opacity: 0;
             transform: translateX(50px);
             animation: slideInRight 1s ease 1.2s forwards;
-        }
-
-        @keyframes slideInRight {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .dashboard-preview {
@@ -622,14 +666,11 @@
             background: linear-gradient(90deg, var(--navy-blue), var(--teal));
         }
 
-        @keyframes growWidth {
-            to { width: 100%; }
-        }
-
-        /* Trust Indicators */
+        /* ========================================
+           TRUST INDICATORS SECTION
+        ======================================== */
         .trust-indicators {
             padding: 3rem 0;
-            /* background: rgba(113, 177, 197, 0.05); */
             background: linear-gradient(90deg, var(--red), var(--navy-blue));
             text-align: center;
             color: var(--sand-dollar);
@@ -641,8 +682,16 @@
 
         .trust-content h3 {
             font-family: 'Exo 2', sans-serif;
-            /* color: var(--navy-blue); */
             margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition-normal);
+        }
+
+        .trust-content p {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease 0.2s;
         }
 
         .client-logos {
@@ -665,27 +714,14 @@
             font-weight: 600;
             color: var(--navy-blue);
             box-shadow: 0 5px 15px rgba(0, 51, 102, 0.1);
+            opacity: 0;
+            transform: translateY(30px) rotateY(45deg);
+            transition: var(--transition-normal);
         }
 
-        /* Section Title */
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-family: 'Exo 2', sans-serif;
-            font-size: 2.5rem;
-            color: var(--navy-blue);
-            margin-bottom: 1rem;
-        }
-
-        .section-title p {
-            font-size: 1.1rem;
-            opacity: 0.8;
-        }
-
-        /* Solutions Overview */
+        /* ========================================
+           SOLUTIONS SECTION
+        ======================================== */
         .solutions-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -697,8 +733,10 @@
             padding: 2rem;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 51, 102, 0.1);
-            transition: all 0.3s ease;
+            transition: var(--transition-fast);
             border: 1px solid rgba(113, 177, 197, 0.1);
+            opacity: 0;
+            transform: translateY(40px) rotateX(10deg);
         }
 
         .solution-card:hover {
@@ -745,16 +783,17 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            transition: var(--transition-fast);
         }
 
         .learn-more:hover {
             color: var(--navy-blue);
         }
 
-        /* Why Choose VAPS */
+        /* ========================================
+           WHY CHOOSE VAPS SECTION
+        ======================================== */
         .why-choose {
-            /* background: var(--white); */
-            /* background: linear-gradient(135deg, var(--baby-blue), var(--oyster-pink)) */
             background: linear-gradient(135deg, var(--teal), var(--red));
             color: var(--sand-dollar);
         }
@@ -767,33 +806,25 @@
 
         .why-item {
             text-align: center;
+            opacity: 0;
+            transform: translateY(50px) scale(0.8);
+            transition: var(--transition-bounce);
         }
 
         .why-number {
             font-family: 'Exo 2', sans-serif;
             font-size: 3rem;
             font-weight: 800;
-            /* color: var(--red); */
             display: block;
             margin-bottom: 1rem;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
         .why-item h3 {
             font-family: 'Exo 2', sans-serif;
-            /* color: var(--navy-blue); */
             margin-bottom: 1rem;
-        }
-        /* Number counter animation */
-        .why-number {
-            opacity: 0;
-            transform: scale(0);
-            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            display: inline-block;
-        }
-
-        .scroll-reveal.revealed .why-number {
-            opacity: 1;
-            transform: scale(1);
         }
 
         /* Counter animation class */
@@ -804,132 +835,19 @@
             background-clip: text;
         }
 
-        /* Success Stories */
+        /* ========================================
+           SUCCESS STORIES SECTION
+        ======================================== */
         .testimonial-container {
             position: relative;
             max-width: 800px;
             margin: 0 auto;
         }
 
-        .testimonial {
-            background: var(--white);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 51, 102, 0.1);
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .testimonial-quote {
-            font-size: 1.3rem;
-            color: var(--navy-blue);
-            margin-bottom: 2rem;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .author-avatar {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--teal), var(--navy-blue));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-weight: 600;
-        }
-
-        .author-info h4 {
-            color: var(--navy-blue);
-            margin-bottom: 0.25rem;
-        }
-
-        .author-info p {
-            color: var(--teal);
-            font-size: 0.9rem;
-        }
-
-        /* Interactive Demo */
-        .demo-section {
-            background: var(--navy-blue);
-            color: var(--white);
-        }
-
-        .demo-section .section-title h2 {
-            color: var(--white);
-        }
-
-        .demo-section .section-title p {
-            color: rgba(240, 242, 243, 0.8);
-        }
-
-        .demo-interface {
-            background: rgba(240, 242, 243, 0.1);
-            border-radius: 20px;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(240, 242, 243, 0.2);
-        }
-
-        .demo-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .demo-tab {
-            padding: 0.75rem 1.5rem;
-            background: rgba(240, 242, 243, 0.1);
-            border: none;
-            border-radius: 25px;
-            color: var(--white);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .demo-tab.active {
-            background: var(--teal);
-        }
-
-        .demo-content {
-            display: none;
-            text-align: center;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .demo-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .demo-preview {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(135deg, rgba(113, 177, 197, 0.2), rgba(203, 230, 239, 0.2));
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 2rem;
-            font-size: 1.5rem;
-        }
-
-        /* Footer */
+        /* ========================================
+           FOOTER
+        ======================================== */
         .footer {
-            /* background: var(--navy-blue); */
             background: linear-gradient(135deg, var(--red), var(--navy-blue));
             color: var(--white);
             padding: 4rem 2rem 2rem;
@@ -943,6 +861,17 @@
             gap: 3rem;
             margin-bottom: 3rem;
         }
+
+        .footer-section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: var(--transition-normal);
+        }
+
+        .footer-section:nth-child(1) { transition-delay: 0.1s; }
+        .footer-section:nth-child(2) { transition-delay: 0.2s; }
+        .footer-section:nth-child(3) { transition-delay: 0.3s; }
+        .footer-section:nth-child(4) { transition-delay: 0.4s; }
 
         .footer-section h3 {
             font-family: 'Exo 2', sans-serif;
@@ -964,7 +893,7 @@
         .footer-section a {
             color: var(--white);
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: var(--transition-fast);
         }
 
         .footer-section a:hover {
@@ -998,11 +927,13 @@
             font-weight: 600;
         }
 
-        /* Scroll Animations */
+        /* ========================================
+           SCROLL REVEAL ANIMATIONS
+        ======================================== */
         .scroll-reveal {
             opacity: 0;
             transform: translateY(50px);
-            transition: all 0.8s ease;
+            transition: var(--transition-normal);
         }
 
         .scroll-reveal.revealed {
@@ -1010,7 +941,68 @@
             transform: translateY(0);
         }
 
-        /* Responsive Design */
+        .scroll-reveal.revealed .section-title h2 {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-reveal.revealed .section-title p {
+            opacity: 0.8;
+            transform: translateY(0);
+        }
+
+        .scroll-reveal.revealed .solution-card:nth-child(1) {
+            animation: cardSlideIn 0.8s ease 0.1s forwards;
+        }
+
+        .scroll-reveal.revealed .solution-card:nth-child(2) {
+            animation: cardSlideIn 0.8s ease 0.3s forwards;
+        }
+
+        .scroll-reveal.revealed .solution-card:nth-child(3) {
+            animation: cardSlideIn 0.8s ease 0.5s forwards;
+        }
+
+        .scroll-reveal.revealed .why-item:nth-child(1) {
+            animation: bounceIn 0.8s ease 0.1s forwards;
+        }
+
+        .scroll-reveal.revealed .why-item:nth-child(2) {
+            animation: bounceIn 0.8s ease 0.3s forwards;
+        }
+
+        .scroll-reveal.revealed .why-item:nth-child(3) {
+            animation: bounceIn 0.8s ease 0.5s forwards;
+        }
+
+        .scroll-reveal.revealed .why-item:nth-child(4) {
+            animation: bounceIn 0.8s ease 0.7s forwards;
+        }
+
+        .scroll-reveal.revealed .why-number {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .scroll-reveal.revealed .trust-content h3 {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-reveal.revealed .trust-content p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-reveal.revealed .client-logo:nth-child(1) { animation: logoSlide 0.6s ease 0.1s forwards; }
+        .scroll-reveal.revealed .client-logo:nth-child(2) { animation: logoSlide 0.6s ease 0.2s forwards; }
+        .scroll-reveal.revealed .client-logo:nth-child(3) { animation: logoSlide 0.6s ease 0.3s forwards; }
+        .scroll-reveal.revealed .client-logo:nth-child(4) { animation: logoSlide 0.6s ease 0.4s forwards; }
+        .scroll-reveal.revealed .client-logo:nth-child(5) { animation: logoSlide 0.6s ease 0.5s forwards; }
+
+        /* ========================================
+           RESPONSIVE DESIGN
+        ======================================== */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -1045,222 +1037,47 @@
                 grid-template-columns: 1fr;
             }
 
-            .demo-tabs {
-                flex-wrap: wrap;
-            }
-
             .footer-bottom {
                 flex-direction: column;
                 gap: 1rem;
                 text-align: center;
             }
-        }
-        /* Text Entry Animations */
-        .hero-stats .stat-item {
-            opacity: 0;
-            transform: translateY(20px) scale(0.9);
-            animation: statItemPop 0.6s ease forwards;
-        }
 
-        .hero-stats .stat-item:nth-child(1) { animation-delay: 1.5s; }
-        .hero-stats .stat-item:nth-child(2) { animation-delay: 1.7s; }
-        .hero-stats .stat-item:nth-child(3) { animation-delay: 1.9s; }
-        .hero-stats .stat-item:nth-child(4) { animation-delay: 2.1s; }
+            .ribbon-item {
+                width: 95vw;
+                height: auto;
+                min-height: 450px;
+                padding: 2rem 1.5rem;
+            }
 
-        @keyframes statItemPop {
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
+            .ribbon-title {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .ribbon-blurb {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .ribbon-ctas {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-primary,
+            .cta-secondary {
+                width: 80%;
+                justify-content: center;
             }
         }
-
-        /* Section titles with typewriter effect */
-        .section-title h2 {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .section-title p {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s ease 0.2s;
-        }
-
-        .scroll-reveal.revealed .section-title h2 {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .scroll-reveal.revealed .section-title p {
-            opacity: 0.8;
-            transform: translateY(0);
-        }
-
-        /* Solution cards staggered animation */
-        .solution-card {
-            opacity: 0;
-            transform: translateY(40px) rotateX(10deg);
-            transition: all 0.8s ease;
-        }
-
-        .scroll-reveal.revealed .solution-card:nth-child(1) {
-            animation: cardSlideIn 0.8s ease 0.1s forwards;
-        }
-
-        .scroll-reveal.revealed .solution-card:nth-child(2) {
-            animation: cardSlideIn 0.8s ease 0.3s forwards;
-        }
-
-        .scroll-reveal.revealed .solution-card:nth-child(3) {
-            animation: cardSlideIn 0.8s ease 0.5s forwards;
-        }
-
-        @keyframes cardSlideIn {
-            to {
-                opacity: 1;
-                transform: translateY(0) rotateX(0deg);
-            }
-        }
-
-        /* Why choose items with bounce effect */
-        .why-item {
-            opacity: 0;
-            transform: translateY(50px) scale(0.8);
-            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        .scroll-reveal.revealed .why-item:nth-child(1) {
-            animation: bounceIn 0.8s ease 0.1s forwards;
-        }
-
-        .scroll-reveal.revealed .why-item:nth-child(2) {
-            animation: bounceIn 0.8s ease 0.3s forwards;
-        }
-
-        .scroll-reveal.revealed .why-item:nth-child(3) {
-            animation: bounceIn 0.8s ease 0.5s forwards;
-        }
-
-        .scroll-reveal.revealed .why-item:nth-child(4) {
-            animation: bounceIn 0.8s ease 0.7s forwards;
-        }
-
-        @keyframes bounceIn {
-            0% {
-                opacity: 0;
-                transform: translateY(50px) scale(0.8);
-            }
-            60% {
-                opacity: 1;
-                transform: translateY(-10px) scale(1.05);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* Number counter animation */
-        .why-number {
-            opacity: 0;
-            transform: scale(0);
-            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        .scroll-reveal.revealed .why-number {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* Trust indicators slide in */
-        .trust-content h3 {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .trust-content p {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s ease 0.2s;
-        }
-
-        .client-logo {
-            opacity: 0;
-            transform: translateY(30px) rotateY(45deg);
-            transition: all 0.8s ease;
-        }
-
-        .scroll-reveal.revealed .trust-content h3 {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .scroll-reveal.revealed .trust-content p {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .scroll-reveal.revealed .client-logo:nth-child(1) { animation: logoSlide 0.6s ease 0.1s forwards; }
-        .scroll-reveal.revealed .client-logo:nth-child(2) { animation: logoSlide 0.6s ease 0.2s forwards; }
-        .scroll-reveal.revealed .client-logo:nth-child(3) { animation: logoSlide 0.6s ease 0.3s forwards; }
-        .scroll-reveal.revealed .client-logo:nth-child(4) { animation: logoSlide 0.6s ease 0.4s forwards; }
-        .scroll-reveal.revealed .client-logo:nth-child(5) { animation: logoSlide 0.6s ease 0.5s forwards; }
-
-        @keyframes logoSlide {
-            to {
-                opacity: 0.7;
-                transform: translateY(0) rotateY(0deg);
-            }
-        }
-
-        /* Footer sections slide up */
-        .footer-section {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s ease;
-        }
-
-        .footer-section:nth-child(1) { transition-delay: 0.1s; }
-        .footer-section:nth-child(2) { transition-delay: 0.2s; }
-        .footer-section:nth-child(3) { transition-delay: 0.3s; }
-        .footer-section:nth-child(4) { transition-delay: 0.4s; }
-
-        /* Text reveal on scroll for better readability */
-        .hero h1 {
-            opacity: 0;
-            transform: translateY(40px);
-            animation: heroTitleReveal 1.2s ease 1.2s forwards;
-        }
-
-        .hero p {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: heroParagraphReveal 1s ease 1.8s forwards;
-        }
-
-        @keyframes heroTitleReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes heroParagraphReveal {
-            to {
-                opacity: 0.8;
-                transform: translateY(0);
-            }
-        }
-
     </style>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <div class="nav-container">
-            <a href="#" class="logo"><img src="./VAPS-Group-logo.png" alt="Disha Logo" /> </a>
+            <a href="#" class="logo"><img src="./VAPS-Group-logo.png" alt="VAPS Logo" /></a>
             <nav>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
@@ -1268,251 +1085,203 @@
                     <li><a href="#why-choose">About Us</a></li>
                     <li><a href="#resources">Resources</a></li>
                     <li><a href="#about">Contact Sales</a></li>
-                    <!-- <li><a href="#contact">Careers</a></li> -->
-                    <li><a href="#contact">360&deg tour</a></li>
+                    <li><a href="#contact">360° tour</a></li>
                 </ul>
             </nav>
             <a href="#demo" class="nav-cta">Request Demo</a>
         </div>
     </header>
 
-    <!-- Hero Section -->
-
-    <div class="ribbon-container">
-        <div class="floating-elements">
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
-            <div class="floating-element"></div>
-        </div>
-
+    <!-- Ribbon Hero Section -->
+    <section class="ribbon-container">
         <div class="ribbon-slider">
             <!-- Slide 1 -->
-            <div class="ribbon-item active" data-slide="0">
+            <article class="ribbon-item active" data-slide="0">
                 <h2 class="ribbon-title">Unlock The True Potential Of Advanced E-learning</h2>
                 <p class="ribbon-blurb">VAPS advanced e-learning enables educational institutions (Schools, College, Universities, Autonomous Colleges) teach smarter, better and deliver quality classes to their students.</p>
                 <div class="ribbon-ctas">
                     <a href="#" class="cta-primary">Learn More →</a>
                     <a href="#" class="cta-secondary">Get a Free Demo</a>
                 </div>
-            </div>
+            </article>
 
             <!-- Slide 2 -->
-            <div class="ribbon-item next" data-slide="1">
+            <article class="ribbon-item next" data-slide="1">
                 <h2 class="ribbon-title">An All-Inclusive Platform For Institutions Of All Sizes</h2>
                 <p class="ribbon-blurb">i-Vidyalaya Resource Management (iVRM) enables institutions to function effectively, be more productive & resourceful.</p>
                 <div class="ribbon-ctas">
                     <a href="#" class="cta-primary">More about iVRM →</a>
                     <a href="#" class="cta-secondary">Get a free demo</a>
                 </div>
-            </div>
+            </article>
 
             <!-- Slide 3 -->
-            <div class="ribbon-item next" data-slide="2">
+            <article class="ribbon-item next" data-slide="2">
                 <h2 class="ribbon-title">Enabling Smart Education For Institutions Since 1999</h2>
                 <p class="ribbon-blurb">VAPS is a education innovation (Schools, College, Universities, Autonomous Colleges) company driving smart education solutions since 1999 for 6000+ institutions.</p>
                 <div class="ribbon-ctas">
                     <a href="#" class="cta-primary">About VAPS →</a>
                     <a href="#" class="cta-secondary">Get a free demo</a>
                 </div>
-            </div>
+            </article>
         </div>
 
         <!-- Navigation -->
-        <div class="ribbon-nav">
-            <div class="nav-dot active" data-slide="0"></div>
-            <div class="nav-dot" data-slide="1"></div>
-            <div class="nav-dot" data-slide="2"></div>
-        </div>
+        <nav class="ribbon-nav" aria-label="Ribbon navigation">
+            <button class="nav-dot active" data-slide="0" aria-label="Go to slide 1"></button>
+            <button class="nav-dot" data-slide="1" aria-label="Go to slide 2"></button>
+            <button class="nav-dot" data-slide="2" aria-label="Go to slide 3"></button>
+        </nav>
 
         <!-- Progress Bar -->
-        <div class="progress-bar">
+        <div class="progress-bar" aria-hidden="true">
             <div class="progress-fill"></div>
         </div>
-    </div>
-
-
-
-
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-stats">
-                    <div class="stat-item">6K+ Deployments</div>
-                    <div class="stat-item">6M+ Users</div>
-                    <div class="stat-item">1M+ Downloads</div>
-                    <div class="stat-item">ISO Certified</div>
-                </div>
-
-                <h1>Drive Better Outcomes For Every Stakeholder</h1>
-                <p>For over two decades, VAPS Group has been the trusted partner 
-                    for schools, colleges, and universities—delivering 
-                    <b> end-to-end campus management</b> solutions 
-                    that <b> simplify workflows, boost efficiency, 
-                        and cut costs</b>. With <b>6,000+ implementations</b>
-                         serving <b>6 million students</b>, we help
-                         institutions unlock their full potential.
-                </p>
-
-                <div class="hero-buttons">
-                    <a href="#solutions" class="btn-primary">
-                        See Our Products
-                        <span>→</span>
-                    </a>
-                    <a href="#demo" class="btn-secondary">Watch Demo</a>
-                </div>
-            </div>
-
-            <div class="hero-visual">
-                <div class="dashboard-preview">
-                    <div class="dashboard-header">
-                        <div class="dashboard-dot"></div>
-                        <div class="dashboard-dot"></div>
-                        <div class="dashboard-dot"></div>
-                    </div>
-                    <div class="dashboard-content">
-                        <div class="chart-bar"></div>
-                        <div class="chart-bar"></div>
-                        <div class="chart-bar"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 
-    <!-- Trust Indicators -->
-    <section class="trust-indicators scroll-reveal">
-        <div class="container">
-            <div class="trust-content">
-                <h3>Trusted by Leading Educational Institutions</h3>
-                <p>Join thousands of schools, colleges, and universities already transforming education</p>
-            </div>
-            <div class="client-logos">
-                <div class="client-logo">Sharadha Vidya Mandir</div>
-                <div class="client-logo">Sri Vishwabharathi</div>
-                <div class="client-logo">Vidhya Samaskruthi</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Solutions Overview -->
-    <section id="solutions" class="section scroll-reveal">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Products</h2>
-                <p>Comprehensive solutions designed to modernize every aspect of educational operations</p>
-            </div>
-            <div class="solutions-grid">
-                <div class="solution-card">
-                    <div class="solution-icon">
-                        <img src="./Vaps-Digital-Campus-768x483.png" alt="Digital Platform" />
+    <!-- Main Hero Section -->
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-stats">
+                        <div class="stat-item">6K+ Deployments</div>
+                        <div class="stat-item">6M+ Users</div>
+                        <div class="stat-item">1M+ Downloads</div>
+                        <div class="stat-item">ISO Certified</div>
                     </div>
-                    <h3>Digital Platform</h3>
-                    <p>VAPS Digital Campus NEP Platform For Educational Institutions (Schools, College, Universities, Autonomous Colleges) Of Any Size.</p>
-                    <a href="#" class="learn-more">Learn More →</a>
-                </div>
-                <div class="solution-card">
-                    <div class="solution-icon">
-                        <img src="./Vaps-E-learning-768x483.png" alt="Advanced E-learning" />
+
+                    <h1>Drive Better Outcomes For Every Stakeholder</h1>
+                    <p>For over two decades, VAPS Group has been the trusted partner 
+                        for schools, colleges, and universities—delivering 
+                        <strong>end-to-end campus management</strong> solutions 
+                        that <strong>simplify workflows, boost efficiency, 
+                            and cut costs</strong>. With <strong>6,000+ implementations</strong>
+                             serving <strong>6 million students</strong>, we help
+                             institutions unlock their full potential.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="#solutions" class="btn-primary">
+                            See Our Products
+                            <span>→</span>
+                        </a>
+                        <a href="#demo" class="btn-secondary">Watch Demo</a>
                     </div>
-                    <h3>Advanced E-learning</h3>
-                    <p>VAPS Advanced E-Lab facilitating advanced e-learning solutions for every academic level from kinder garden till university by introducing innovation to existing teaching methods and delivering a practical, more inclusive educational content.</p>
-                    <a href="#" class="learn-more">Learn More →</a>
                 </div>
-                <div class="solution-card">
-                    <div class="solution-icon">
-                        <img src="./Science-Park-768x483.jpg" alt="Science Park" />
+
+                <aside class="hero-visual">
+                    <div class="dashboard-preview">
+                        <div class="dashboard-header">
+                            <div class="dashboard-dot"></div>
+                            <div class="dashboard-dot"></div>
+                            <div class="dashboard-dot"></div>
+                        </div>
+                        <div class="dashboard-content">
+                            <div class="chart-bar"></div>
+                            <div class="chart-bar"></div>
+                            <div class="chart-bar"></div>
+                        </div>
                     </div>
-                    <h3>Science Park</h3>
-                    <p>Comprehensive fee collection, budgeting, accounting, and financial reporting solutions.</p>
-                    <a href="#" class="learn-more">Learn More →</a>
-                </div>
+                </aside>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Why Choose VAPS -->
-    <section id="why-choose" class="section why-choose scroll-reveal">
-        <div class="container">
-            <div class="section-title">
-                <h2>Delivering Excellence Since 1999</h2>
-                <p>Two decades of expertise delivering results that matter</p>
-            </div>
-            <div class="why-grid">
-                <div class="why-item">
-                    <span class="why-number">22+</span>
-                    <h3>Years In Business</h3>
-                    <p></p>
+        <!-- Trust Indicators -->
+        <section class="trust-indicators scroll-reveal">
+            <div class="container">
+                <div class="trust-content">
+                    <h3>Trusted by Leading Educational Institutions</h3>
+                    <p>Join thousands of schools, colleges, and universities already transforming education</p>
                 </div>
-                <div class="why-item">
-                    <span class="why-number">1M+</span>
-                    <h3>Mobile App Downloads</h3>
-                    <p></p>
-                </div>
-                <div class="why-item">
-                    <span class="why-number">6000+</span>
-                    <h3>Happy Clients</h3>
-                    <p></p>
-                </div>
-                <div class="why-item">
-                    <span class="why-number">6M+</span>
-                    <h3>Users</h3>
-                    <p></p>
+                <div class="client-logos">
+                    <div class="client-logo">Sharadha Vidya Mandir</div>
+                    <div class="client-logo">Sri Vishwabharathi</div>
+                    <div class="client-logo">Vidhya Samaskruthi</div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Success Stories -->
-    <section id="success" class="section scroll-reveal">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Clients</h2>
-                <p>VAPS facilitates 6000+ implementations, 6 million+ active students</p>
+        <!-- Solutions Overview -->
+        <section id="solutions" class="section scroll-reveal">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Products</h2>
+                    <p>Comprehensive solutions designed to modernize every aspect of educational operations</p>
+                </div>
+                <div class="solutions-grid">
+                    <article class="solution-card">
+                        <div class="solution-icon">
+                            <img src="./Vaps-Digital-Campus-768x483.png" alt="Digital Platform Interface" />
+                        </div>
+                        <h3>Digital Platform</h3>
+                        <p>VAPS Digital Campus NEP Platform For Educational Institutions (Schools, College, Universities, Autonomous Colleges) Of Any Size.</p>
+                        <a href="#" class="learn-more">Learn More →</a>
+                    </article>
+                    <article class="solution-card">
+                        <div class="solution-icon">
+                            <img src="./Vaps-E-learning-768x483.png" alt="Advanced E-learning Platform" />
+                        </div>
+                        <h3>Advanced E-learning</h3>
+                        <p>VAPS Advanced E-Lab facilitating advanced e-learning solutions for every academic level from kinder garden till university by introducing innovation to existing teaching methods and delivering a practical, more inclusive educational content.</p>
+                        <a href="#" class="learn-more">Learn More →</a>
+                    </article>
+                    <article class="solution-card">
+                        <div class="solution-icon">
+                            <img src="./Science-Park-768x483.jpg" alt="Science Park Interface" />
+                        </div>
+                        <h3>Science Park</h3>
+                        <p>Comprehensive fee collection, budgeting, accounting, and financial reporting solutions.</p>
+                        <a href="#" class="learn-more">Learn More →</a>
+                    </article>
+                </div>
             </div>
-            <div class="testimonial-container">
-                <img src="./Sharadha-Vidya-Mandir.png" alt="Sharadha-Vidya-Mandir" />
-                <img src="./Sri-Vishwabharathi.png" alt="Sri-Vishwabharathi" />
-                <img src="./Vidhya-Samaskruthi-international-school.png" alt="Vidhya-Samaskruthi-international-school" />
-            and many more.. <a href="#" class="learn-more">See full list →</a>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Interactive Demo -->
-    <!-- <section id="demo" class="section demo-section scroll-reveal">
-        <div class="container">
-            <div class="section-title">
-                <h2>Experience VAPS in Action</h2>
-                <p>See how our solutions transform educational management</p>
-            </div>
-            <div class="demo-interface">
-                <div class="demo-tabs">
-                    <button class="demo-tab active" data-tab="dashboard">Dashboard</button>
-                    <button class="demo-tab" data-tab="students">Students</button>
-                    <button class="demo-tab" data-tab="analytics">Analytics</button>
+        <!-- Why Choose VAPS -->
+        <section id="why-choose" class="section why-choose scroll-reveal">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Delivering Excellence Since 1999</h2>
+                    <p>Two decades of expertise delivering results that matter</p>
                 </div>
-                
-                <div id="dashboard" class="demo-content active">
-                    <h3>Admin Dashboard</h3>
-                    <p>Real-time insights into your institution's performance with interactive charts and key metrics.</p>
-                    <div class="demo-preview">📊 Interactive Dashboard Preview</div>
-                </div>
-                
-                <div id="students" class="demo-content">
-                    <h3>Student Management</h3>
-                    <p>Comprehensive student profiles with academic tracking and communication tools.</p>
-                    <div class="demo-preview">👨‍🎓 Student Portal Preview</div>
-                </div>
-                
-                <div id="analytics" class="demo-content">
-                    <h3>Advanced Analytics</h3>
-                    <p>Data-driven insights for informed decision making and performance optimization.</p>
-                    <div class="demo-preview">📈 Analytics Dashboard Preview</div>
+                <div class="why-grid">
+                    <div class="why-item">
+                        <span class="why-number">22+</span>
+                        <h3>Years In Business</h3>
+                    </div>
+                    <div class="why-item">
+                        <span class="why-number">1M+</span>
+                        <h3>Mobile App Downloads</h3>
+                    </div>
+                    <div class="why-item">
+                        <span class="why-number">6000+</span>
+                        <h3>Happy Clients</h3>
+                    </div>
+                    <div class="why-item">
+                        <span class="why-number">6M+</span>
+                        <h3>Users</h3>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section> -->
+        </section>
+
+        <!-- Success Stories -->
+        <section id="success" class="section scroll-reveal">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Clients</h2>
+                    <p>VAPS facilitates 6000+ implementations, 6 million+ active students</p>
+                </div>
+                <div class="testimonial-container">
+                    <img src="./Sharadha-Vidya-Mandir.png" alt="Sharadha Vidya Mandir Logo" />
+                    <img src="./Sri-Vishwabharathi.png" alt="Sri Vishwabharathi Logo" />
+                    <img src="./Vidhya-Samaskruthi-international-school.png" alt="Vidhya Samaskruthi International School Logo" />
+                and many more.. <a href="#" class="learn-more">See full list →</a>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -1552,7 +1321,6 @@
                     <li><a href="#">Downloads</a></li>
                 </ul>
             </div>
-
         </div>
 
         <div class="footer-bottom">
@@ -1564,76 +1332,97 @@
     </footer>
 
     <script>
-        // Scroll animations
-        function initScrollAnimations() {
-            const elements = document.querySelectorAll('.scroll-reveal');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('revealed');
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
+        'use strict';
+        
+        /**
+         * VAPS Website Interactive Components
+         * Handles scroll animations, ribbon slider, and navigation
+         */
 
-            elements.forEach(el => observer.observe(el));
+        // Configuration object for better maintainability
+        const CONFIG = {
+            SCROLL_THRESHOLD: 0.1,
+            SCROLL_ROOT_MARGIN: '0px 0px -50px 0px',
+            SLIDER_INTERVAL: 5000,
+            SWIPE_THRESHOLD: 50,
+            COUNTER_FRAMES: 60,
+            COUNTER_FPS: 16
+        };
+
+        /**
+         * Scroll Animations Handler
+         */
+        class ScrollAnimations {
+            constructor() {
+                this.initScrollObserver();
+            }
+
+            initScrollObserver() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('revealed');
+                        }
+                    });
+                }, {
+                    threshold: CONFIG.SCROLL_THRESHOLD,
+                    rootMargin: CONFIG.SCROLL_ROOT_MARGIN
+                });
+
+                document.querySelectorAll('.scroll-reveal').forEach(el => {
+                    observer.observe(el);
+                });
+            }
         }
 
-        // Header scroll effect
-        function handleHeaderScroll() {
-            const header = document.querySelector('.header');
-            
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 100) {
-                    header.style.background = 'rgba(240, 242, 243, 0.98)';
-                } else {
-                    header.style.background = 'rgba(240, 242, 243, 0.95)';
+        /**
+         * Header Scroll Effects Handler
+         */
+        class HeaderController {
+            constructor() {
+                this.header = document.querySelector('.header');
+                this.initScrollEffect();
+            }
+
+            initScrollEffect() {
+                window.addEventListener('scroll', () => {
+                    const scrolled = window.scrollY > 100;
+                    this.header.style.background = scrolled 
+                        ? 'rgba(229, 221, 200, 0.98)' 
+                        : 'rgba(229, 221, 200, 0.95)';
+                });
+            }
+        }
+
+        /**
+         * Smooth Scrolling Navigation
+         */
+        class SmoothScrolling {
+            constructor() {
+                this.initSmoothScroll();
+            }
+
+            initSmoothScroll() {
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', this.handleClick.bind(this));
+                });
+            }
+
+            handleClick(e) {
+                e.preventDefault();
+                const target = document.querySelector(e.currentTarget.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
-            });
+            }
         }
 
-        // Smooth scrolling for navigation
-        function initSmoothScroll() {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-        }
-
-        // Demo tabs functionality
-        function initDemoTabs() {
-            document.querySelectorAll('.demo-tab').forEach(tab => {
-                tab.addEventListener('click', () => {
-                    // Remove active from all tabs and contents
-                    document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
-                    document.querySelectorAll('.demo-content').forEach(c => c.classList.remove('active'));
-                    
-                    // Add active to clicked tab and corresponding content
-                    tab.classList.add('active');
-                    document.getElementById(tab.getAttribute('data-tab')).classList.add('active');
-                });
-            });
-        }
-
-        // Initialize all animations and interactions
-        document.addEventListener('DOMContentLoaded', () => {
-            initScrollAnimations();
-            handleHeaderScroll();
-            initSmoothScroll();
-            initDemoTabs();
-        });
-
+        /**
+         * Ribbon Slider Component
+         */
         class RibbonSlider {
             constructor() {
                 this.currentSlide = 0;
@@ -1642,12 +1431,19 @@
                 this.totalSlides = this.slides.length;
                 this.autoPlayInterval = null;
                 this.progressBar = document.querySelector('.progress-fill');
+                this.touchStartX = 0;
+                this.touchEndX = 0;
                 
                 this.init();
             }
 
             init() {
-                // Add click events to dots
+                this.bindEvents();
+                this.startAutoPlay();
+            }
+
+            bindEvents() {
+                // Dot navigation
                 this.dots.forEach((dot, index) => {
                     dot.addEventListener('click', () => {
                         this.goToSlide(index);
@@ -1655,39 +1451,37 @@
                     });
                 });
 
-                // Add keyboard navigation
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'ArrowLeft') {
-                        this.prevSlide();
-                        this.restartAutoPlay();
-                    } else if (e.key === 'ArrowRight') {
-                        this.nextSlide();
-                        this.restartAutoPlay();
-                    }
-                });
+                // Keyboard navigation
+                document.addEventListener('keydown', this.handleKeydown.bind(this));
 
-                // Add touch/swipe support
-                let startX = 0;
-                let endX = 0;
+                // Touch/swipe support
+                document.addEventListener('touchstart', this.handleTouchStart.bind(this));
+                document.addEventListener('touchend', this.handleTouchEnd.bind(this));
+            }
 
-                document.addEventListener('touchstart', (e) => {
-                    startX = e.touches[0].clientX;
-                });
+            handleKeydown(e) {
+                if (e.key === 'ArrowLeft') {
+                    this.prevSlide();
+                    this.restartAutoPlay();
+                } else if (e.key === 'ArrowRight') {
+                    this.nextSlide();
+                    this.restartAutoPlay();
+                }
+            }
 
-                document.addEventListener('touchend', (e) => {
-                    endX = e.changedTouches[0].clientX;
-                    this.handleSwipe();
-                });
+            handleTouchStart(e) {
+                this.touchStartX = e.touches[0].clientX;
+            }
 
-                // Start auto-play
-                this.startAutoPlay();
+            handleTouchEnd(e) {
+                this.touchEndX = e.changedTouches[0].clientX;
+                this.handleSwipe();
             }
 
             handleSwipe() {
-                const threshold = 50;
-                const diff = startX - endX;
+                const diff = this.touchStartX - this.touchEndX;
 
-                if (Math.abs(diff) > threshold) {
+                if (Math.abs(diff) > CONFIG.SWIPE_THRESHOLD) {
                     if (diff > 0) {
                         this.nextSlide();
                     } else {
@@ -1698,7 +1492,6 @@
             }
 
             goToSlide(slideIndex) {
-                // Remove all classes
                 this.slides.forEach((slide, index) => {
                     slide.classList.remove('active', 'prev', 'next');
                     
@@ -1711,7 +1504,6 @@
                     }
                 });
 
-                // Update dots
                 this.dots.forEach((dot, index) => {
                     dot.classList.toggle('active', index === slideIndex);
                 });
@@ -1732,7 +1524,7 @@
             startAutoPlay() {
                 this.autoPlayInterval = setInterval(() => {
                     this.nextSlide();
-                }, 5000);
+                }, CONFIG.SLIDER_INTERVAL);
             }
 
             stopAutoPlay() {
@@ -1744,111 +1536,167 @@
             restartAutoPlay() {
                 this.stopAutoPlay();
                 this.startAutoPlay();
-                
-                // Restart progress bar animation
+                this.restartProgressBar();
+            }
+
+            restartProgressBar() {
                 this.progressBar.style.animation = 'none';
                 setTimeout(() => {
-                    this.progressBar.style.animation = 'progressFill 5s linear infinite';
+                    this.progressBar.style.animation = `progressFill ${CONFIG.SLIDER_INTERVAL}ms linear infinite`;
                 }, 10);
             }
         }
 
-        // Initialize the slider when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            new RibbonSlider();
-        });
+        /**
+         * Counter Animation Handler
+         */
+        class CounterAnimations {
+            constructor() {
+                this.initCounterObserver();
+            }
 
-        // Pause auto-play when page is not visible
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                // Page is hidden, pause auto-play
-                if (window.ribbonSlider) {
-                    window.ribbonSlider.stopAutoPlay();
-                }
-            } else {
-                // Page is visible, resume auto-play
-                if (window.ribbonSlider) {
-                    window.ribbonSlider.startAutoPlay();
+            initCounterObserver() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            this.animateCounters(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                const whySection = document.querySelector('#why-choose');
+                if (whySection) {
+                    observer.observe(whySection);
                 }
             }
-        });
 
-        // Footer animation trigger
-        const footerObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const footerSections = entry.target.querySelectorAll('.footer-section');
-                    footerSections.forEach((section, index) => {
-                        setTimeout(() => {
-                            section.style.opacity = '1';
-                            section.style.transform = 'translateY(0)';
-                        }, index * 100);
-                    });
-                }
-            });
-        }, { threshold: 0.2 });
+            animateCounters(section) {
+                const counters = section.querySelectorAll('.why-number');
+                
+                counters.forEach((counter, index) => {
+                    setTimeout(() => {
+                        this.animateCounter(counter);
+                    }, index * 200);
+                });
+            }
 
-        // Observe footer
-        document.addEventListener('DOMContentLoaded', () => {
-            const footer = document.querySelector('.footer-container');
-            if (footer) footerObserver.observe(footer);
-        });
+            animateCounter(element) {
+                element.classList.add('counting');
+                const text = element.textContent;
+                
+                const { targetNumber, suffix } = this.parseCounterText(text);
+                
+                let current = 0;
+                const increment = targetNumber / CONFIG.COUNTER_FRAMES;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= targetNumber) {
+                        element.textContent = targetNumber + suffix;
+                        clearInterval(timer);
+                        element.classList.remove('counting');
+                    } else {
+                        element.textContent = Math.floor(current) + suffix;
+                    }
+                }, CONFIG.COUNTER_FPS);
+            }
 
-        // Number counter animation
-        function animateCounter(element, target, suffix = '') {
-            let current = 0;
-            const increment = target / 60; // 60 frames for smooth animation
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    element.textContent = target + suffix;
-                    clearInterval(timer);
-                    element.classList.remove('counting');
+            parseCounterText(text) {
+                let targetNumber, suffix;
+                
+                if (text.includes('M+')) {
+                    targetNumber = parseInt(text.replace('M+', ''));
+                    suffix = 'M+';
+                } else if (text.includes('+')) {
+                    targetNumber = parseInt(text.replace('+', ''));
+                    suffix = '+';
                 } else {
-                    element.textContent = Math.floor(current) + suffix;
+                    targetNumber = parseInt(text);
+                    suffix = '';
                 }
-            }, 16); // ~60fps
+                
+                return { targetNumber, suffix };
+            }
         }
 
-        // Enhanced scroll observer for counters
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const counters = entry.target.querySelectorAll('.why-number');
-                    
-                    counters.forEach((counter, index) => {
-                        setTimeout(() => {
-                            counter.classList.add('counting');
-                            const text = counter.textContent;
-                            
-                            // Extract number and suffix
-                            let targetNumber, suffix;
-                            if (text.includes('M+')) {
-                                targetNumber = parseInt(text.replace('M+', ''));
-                                suffix = 'M+';
-                            } else if (text.includes('+')) {
-                                targetNumber = parseInt(text.replace('+', ''));
-                                suffix = '+';
-                            } else {
-                                targetNumber = parseInt(text);
-                                suffix = '';
-                            }
-                            
-                            // Start counting animation
-                            animateCounter(counter, targetNumber, suffix);
-                        }, index * 200); // Stagger the animations
-                    });
-                }
-            });
-        }, { threshold: 0.5 });
-
-        // Initialize counter observer
-        document.addEventListener('DOMContentLoaded', () => {
-            const whySection = document.querySelector('#why-choose');
-            if (whySection) {
-                counterObserver.observe(whySection);
+        /**
+         * Footer Animation Handler
+         */
+        class FooterAnimations {
+            constructor() {
+                this.initFooterObserver();
             }
-        });
+
+            initFooterObserver() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            this.animateFooterSections(entry.target);
+                        }
+                    });
+                }, { threshold: 0.2 });
+
+                const footer = document.querySelector('.footer-container');
+                if (footer) {
+                    observer.observe(footer);
+                }
+            }
+
+            animateFooterSections(footer) {
+                const sections = footer.querySelectorAll('.footer-section');
+                sections.forEach((section, index) => {
+                    setTimeout(() => {
+                        section.style.opacity = '1';
+                        section.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
+            }
+        }
+
+        /**
+         * Page Visibility Handler
+         */
+        class VisibilityController {
+            constructor(slider) {
+                this.slider = slider;
+                this.initVisibilityHandler();
+            }
+
+            initVisibilityHandler() {
+                document.addEventListener('visibilitychange', () => {
+                    if (document.hidden) {
+                        this.slider.stopAutoPlay();
+                    } else {
+                        this.slider.startAutoPlay();
+                    }
+                });
+            }
+        }
+
+        /**
+         * Application Initialization
+         */
+        class VAPSWebsite {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                // Initialize all components when DOM is ready
+                document.addEventListener('DOMContentLoaded', () => {
+                    this.scrollAnimations = new ScrollAnimations();
+                    this.headerController = new HeaderController();
+                    this.smoothScrolling = new SmoothScrolling();
+                    this.ribbonSlider = new RibbonSlider();
+                    this.counterAnimations = new CounterAnimations();
+                    this.footerAnimations = new FooterAnimations();
+                    this.visibilityController = new VisibilityController(this.ribbonSlider);
+                });
+            }
+        }
+
+        // Initialize the application
+        new VAPSWebsite();
     </script>
 </body>
 </html>
