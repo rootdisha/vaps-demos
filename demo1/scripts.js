@@ -367,6 +367,10 @@ class VAPSWebsite {
             this.counterAnimations = new CounterAnimations();
             this.footerAnimations = new FooterAnimations();
             this.visibilityController = new VisibilityController(this.ribbonSlider);
+            // Initialize Lucide icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
         });
     }
 }
