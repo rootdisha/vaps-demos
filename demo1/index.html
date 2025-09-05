@@ -293,6 +293,93 @@
             background: linear-gradient(135deg, var(--navy-blue), var(--red));
         }
 
+        /* Sparkles overlay */
+        .sparkles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: sparkle 3s infinite;
+        }
+
+        .sparkle:before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .sparkle:after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 50%);
+            border-radius: 50%;
+        }
+
+        /* Different sparkle sizes */
+        .sparkle.small {
+            width: 2px;
+            height: 2px;
+        }
+
+        .sparkle.medium {
+            width: 4px;
+            height: 4px;
+        }
+
+        .sparkle.large {
+            width: 6px;
+            height: 6px;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) rotate(180deg);
+            }
+        }
+
+        /* Stagger animations for natural feel */
+        .sparkle:nth-child(odd) {
+            animation-duration: 2s;
+            animation-delay: 0s;
+        }
+
+        .sparkle:nth-child(even) {
+            animation-duration: 3s;
+            animation-delay: 1s;
+        }
+
+        .sparkle:nth-child(3n) {
+            animation-duration: 4s;
+            animation-delay: 2s;
+        }        
+
         .ribbon-slider {
             width: 100%;
             height: 100%;
@@ -1094,6 +1181,18 @@
 
     <!-- Ribbon Hero Section -->
     <section class="ribbon-container">
+        <div class="sparkles">
+            <div class="sparkle small" style="top: 20%; left: 10%;"></div>
+            <div class="sparkle medium" style="top: 15%; left: 80%;"></div>
+            <div class="sparkle large" style="top: 60%; left: 5%;"></div>
+            <div class="sparkle small" style="top: 70%; left: 85%;"></div>
+            <div class="sparkle medium" style="top: 30%; left: 25%;"></div>
+            <div class="sparkle large" style="top: 80%; left: 60%;"></div>
+            <div class="sparkle small" style="top: 10%; left: 45%;"></div>
+            <div class="sparkle medium" style="top: 90%; left: 30%;"></div>
+            <div class="sparkle large" style="top: 40%; left: 75%;"></div>
+            <div class="sparkle small" style="top: 55%; left: 15%;"></div>
+        </div>
         <div class="ribbon-slider">
             <!-- Slide 1 -->
             <article class="ribbon-item active" data-slide="0">
@@ -1190,6 +1289,18 @@
         <!-- Trust Indicators -->
         <section class="trust-indicators scroll-reveal">
             <div class="container">
+                <div class="sparkles">
+                    <div class="sparkle small" style="top: 20%; left: 10%;"></div>
+                    <div class="sparkle medium" style="top: 15%; left: 80%;"></div>
+                    <div class="sparkle large" style="top: 60%; left: 5%;"></div>
+                    <div class="sparkle small" style="top: 70%; left: 85%;"></div>
+                    <div class="sparkle medium" style="top: 30%; left: 25%;"></div>
+                    <div class="sparkle large" style="top: 80%; left: 60%;"></div>
+                    <div class="sparkle small" style="top: 10%; left: 45%;"></div>
+                    <div class="sparkle medium" style="top: 90%; left: 30%;"></div>
+                    <div class="sparkle large" style="top: 40%; left: 75%;"></div>
+                    <div class="sparkle small" style="top: 55%; left: 15%;"></div>
+                </div>
                 <div class="trust-content">
                     <h3>Trusted by Leading Educational Institutions</h3>
                     <p>Join thousands of schools, colleges, and universities already transforming education</p>
@@ -1241,6 +1352,18 @@
         <!-- Why Choose VAPS -->
         <section id="why-choose" class="section why-choose scroll-reveal">
             <div class="container">
+                <div class="sparkles">
+                    <div class="sparkle small" style="top: 20%; left: 10%;"></div>
+                    <div class="sparkle medium" style="top: 15%; left: 80%;"></div>
+                    <div class="sparkle large" style="top: 60%; left: 5%;"></div>
+                    <div class="sparkle small" style="top: 70%; left: 85%;"></div>
+                    <div class="sparkle medium" style="top: 30%; left: 25%;"></div>
+                    <div class="sparkle large" style="top: 80%; left: 60%;"></div>
+                    <div class="sparkle small" style="top: 10%; left: 45%;"></div>
+                    <div class="sparkle medium" style="top: 90%; left: 30%;"></div>
+                    <div class="sparkle large" style="top: 40%; left: 75%;"></div>
+                    <div class="sparkle small" style="top: 55%; left: 15%;"></div>
+                </div>
                 <div class="section-title">
                     <h2>Delivering Excellence Since 1999</h2>
                     <p>Two decades of expertise delivering results that matter</p>
