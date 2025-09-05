@@ -21,7 +21,7 @@
             /* palette 2 */
             --fun-blue: #144394;
             /* --monza: #E00918; */
-            /* --oyster-pink: #EBCFCF; */
+            --oyster-pink: #EBCFCF;
             /* --apricot: #E7887B; */
             --grey-blue: #D6D9DC;
         }
@@ -65,7 +65,8 @@
             align-items: center;
             justify-content: center;
             perspective: 1000px;
-            background-color: var(--red);
+            /* background-color: var(--red); */
+            background: linear-gradient(135deg, var(--navy-blue), var(--red));
         }
 
         .ribbon-slider {
@@ -626,8 +627,10 @@
         /* Trust Indicators */
         .trust-indicators {
             padding: 3rem 0;
-            background: rgba(113, 177, 197, 0.05);
+            /* background: rgba(113, 177, 197, 0.05); */
+            background: linear-gradient(90deg, var(--red), var(--navy-blue));
             text-align: center;
+            color: var(--sand-dollar);
         }
 
         .trust-content {
@@ -636,7 +639,7 @@
 
         .trust-content h3 {
             font-family: 'Exo 2', sans-serif;
-            color: var(--navy-blue);
+            /* color: var(--navy-blue); */
             margin-bottom: 1rem;
         }
 
@@ -748,7 +751,10 @@
 
         /* Why Choose VAPS */
         .why-choose {
-            background: var(--white);
+            /* background: var(--white); */
+            /* background: linear-gradient(135deg, var(--baby-blue), var(--oyster-pink)) */
+            background: linear-gradient(135deg, var(--teal), var(--red));
+            color: var(--sand-dollar);
         }
 
         .why-grid {
@@ -765,15 +771,35 @@
             font-family: 'Exo 2', sans-serif;
             font-size: 3rem;
             font-weight: 800;
-            color: var(--red);
+            /* color: var(--red); */
             display: block;
             margin-bottom: 1rem;
         }
 
         .why-item h3 {
             font-family: 'Exo 2', sans-serif;
-            color: var(--navy-blue);
+            /* color: var(--navy-blue); */
             margin-bottom: 1rem;
+        }
+        /* Number counter animation */
+        .why-number {
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: inline-block;
+        }
+
+        .scroll-reveal.revealed .why-number {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Counter animation class */
+        .counting {
+            background: linear-gradient(135deg, var(--red), var(--teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         /* Success Stories */
@@ -1026,6 +1052,205 @@
                 text-align: center;
             }
         }
+        /* Text Entry Animations */
+        .hero-stats .stat-item {
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+            animation: statItemPop 0.6s ease forwards;
+        }
+
+        .hero-stats .stat-item:nth-child(1) { animation-delay: 1.5s; }
+        .hero-stats .stat-item:nth-child(2) { animation-delay: 1.7s; }
+        .hero-stats .stat-item:nth-child(3) { animation-delay: 1.9s; }
+        .hero-stats .stat-item:nth-child(4) { animation-delay: 2.1s; }
+
+        @keyframes statItemPop {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Section titles with typewriter effect */
+        .section-title h2 {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .section-title p {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease 0.2s;
+        }
+
+        .scroll-reveal.revealed .section-title h2 {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-reveal.revealed .section-title p {
+            opacity: 0.8;
+            transform: translateY(0);
+        }
+
+        /* Solution cards staggered animation */
+        .solution-card {
+            opacity: 0;
+            transform: translateY(40px) rotateX(10deg);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-reveal.revealed .solution-card:nth-child(1) {
+            animation: cardSlideIn 0.8s ease 0.1s forwards;
+        }
+
+        .scroll-reveal.revealed .solution-card:nth-child(2) {
+            animation: cardSlideIn 0.8s ease 0.3s forwards;
+        }
+
+        .scroll-reveal.revealed .solution-card:nth-child(3) {
+            animation: cardSlideIn 0.8s ease 0.5s forwards;
+        }
+
+        @keyframes cardSlideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg);
+            }
+        }
+
+        /* Why choose items with bounce effect */
+        .why-item {
+            opacity: 0;
+            transform: translateY(50px) scale(0.8);
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .scroll-reveal.revealed .why-item:nth-child(1) {
+            animation: bounceIn 0.8s ease 0.1s forwards;
+        }
+
+        .scroll-reveal.revealed .why-item:nth-child(2) {
+            animation: bounceIn 0.8s ease 0.3s forwards;
+        }
+
+        .scroll-reveal.revealed .why-item:nth-child(3) {
+            animation: bounceIn 0.8s ease 0.5s forwards;
+        }
+
+        .scroll-reveal.revealed .why-item:nth-child(4) {
+            animation: bounceIn 0.8s ease 0.7s forwards;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.8);
+            }
+            60% {
+                opacity: 1;
+                transform: translateY(-10px) scale(1.05);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Number counter animation */
+        .why-number {
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .scroll-reveal.revealed .why-number {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Trust indicators slide in */
+        .trust-content h3 {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .trust-content p {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease 0.2s;
+        }
+
+        .client-logo {
+            opacity: 0;
+            transform: translateY(30px) rotateY(45deg);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-reveal.revealed .trust-content h3 {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-reveal.revealed .trust-content p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-reveal.revealed .client-logo:nth-child(1) { animation: logoSlide 0.6s ease 0.1s forwards; }
+        .scroll-reveal.revealed .client-logo:nth-child(2) { animation: logoSlide 0.6s ease 0.2s forwards; }
+        .scroll-reveal.revealed .client-logo:nth-child(3) { animation: logoSlide 0.6s ease 0.3s forwards; }
+        .scroll-reveal.revealed .client-logo:nth-child(4) { animation: logoSlide 0.6s ease 0.4s forwards; }
+        .scroll-reveal.revealed .client-logo:nth-child(5) { animation: logoSlide 0.6s ease 0.5s forwards; }
+
+        @keyframes logoSlide {
+            to {
+                opacity: 0.7;
+                transform: translateY(0) rotateY(0deg);
+            }
+        }
+
+        /* Footer sections slide up */
+        .footer-section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .footer-section:nth-child(1) { transition-delay: 0.1s; }
+        .footer-section:nth-child(2) { transition-delay: 0.2s; }
+        .footer-section:nth-child(3) { transition-delay: 0.3s; }
+        .footer-section:nth-child(4) { transition-delay: 0.4s; }
+
+        /* Text reveal on scroll for better readability */
+        .hero h1 {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: heroTitleReveal 1.2s ease 1.2s forwards;
+        }
+
+        .hero p {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: heroParagraphReveal 1s ease 1.8s forwards;
+        }
+
+        @keyframes heroTitleReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heroParagraphReveal {
+            to {
+                opacity: 0.8;
+                transform: translateY(0);
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -1160,11 +1385,9 @@
                 <p>Join thousands of schools, colleges, and universities already transforming education</p>
             </div>
             <div class="client-logos">
-                <div class="client-logo">University A</div>
-                <div class="client-logo">College B</div>
-                <div class="client-logo">School C</div>
-                <div class="client-logo">Institute D</div>
-                <div class="client-logo">Academy E</div>
+                <div class="client-logo">Sharadha Vidya Mandir</div>
+                <div class="client-logo">Sri Vishwabharathi</div>
+                <div class="client-logo">Vidhya Samaskruthi</div>
             </div>
         </div>
     </section>
@@ -1298,7 +1521,7 @@
             </div>
 
             <div class="footer-section">
-                <h3>Solutions</h3>
+                <h3>Products</h3>
                 <ul>
                     <li><a href="#">Digital Campus</a></li>
                     <li><a href="#">Enhanced e-learning Platform</a></li>
@@ -1544,6 +1767,83 @@
                 if (window.ribbonSlider) {
                     window.ribbonSlider.startAutoPlay();
                 }
+            }
+        });
+
+        // Footer animation trigger
+        const footerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const footerSections = entry.target.querySelectorAll('.footer-section');
+                    footerSections.forEach((section, index) => {
+                        setTimeout(() => {
+                            section.style.opacity = '1';
+                            section.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    });
+                }
+            });
+        }, { threshold: 0.2 });
+
+        // Observe footer
+        document.addEventListener('DOMContentLoaded', () => {
+            const footer = document.querySelector('.footer-container');
+            if (footer) footerObserver.observe(footer);
+        });
+
+        // Number counter animation
+        function animateCounter(element, target, suffix = '') {
+            let current = 0;
+            const increment = target / 60; // 60 frames for smooth animation
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + suffix;
+                    clearInterval(timer);
+                    element.classList.remove('counting');
+                } else {
+                    element.textContent = Math.floor(current) + suffix;
+                }
+            }, 16); // ~60fps
+        }
+
+        // Enhanced scroll observer for counters
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.why-number');
+                    
+                    counters.forEach((counter, index) => {
+                        setTimeout(() => {
+                            counter.classList.add('counting');
+                            const text = counter.textContent;
+                            
+                            // Extract number and suffix
+                            let targetNumber, suffix;
+                            if (text.includes('M+')) {
+                                targetNumber = parseInt(text.replace('M+', ''));
+                                suffix = 'M+';
+                            } else if (text.includes('+')) {
+                                targetNumber = parseInt(text.replace('+', ''));
+                                suffix = '+';
+                            } else {
+                                targetNumber = parseInt(text);
+                                suffix = '';
+                            }
+                            
+                            // Start counting animation
+                            animateCounter(counter, targetNumber, suffix);
+                        }, index * 200); // Stagger the animations
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        // Initialize counter observer
+        document.addEventListener('DOMContentLoaded', () => {
+            const whySection = document.querySelector('#why-choose');
+            if (whySection) {
+                counterObserver.observe(whySection);
             }
         });
     </script>
